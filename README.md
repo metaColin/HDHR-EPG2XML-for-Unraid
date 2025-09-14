@@ -4,10 +4,10 @@ HDHomeRun EPG to XML converter for Unraid - Dockerized Python application that f
 
 ## Architecture
 - **Core Script**: `HDHomeRunEPG_To_XmlTv.py` (GPL licensed, included)
-- **Web Server**: Built-in HTTP server serving EPG data on port 8080
+- **Web Server**: Built-in HTTP server serving EPG data on configurable port (default: 8083)
 - **Containerization**: Docker with Python 3.11-slim base
 - **Scheduling**: Cron-based automatic updates with supervisor process management
-- **Output**: XMLTV formatted EPG data served via HTTP at `http://<container>:8080/epg.xml`
+- **Output**: XMLTV formatted EPG data served via HTTP at `http://<container>:8083/epg.xml`
 
 ## Quick Start
 
@@ -20,7 +20,7 @@ vim docker-compose.yml
 docker-compose up -d
 
 # Access EPG at:
-http://localhost:8080/epg.xml
+http://localhost:8083/epg.xml
 ```
 
 ### Using Docker Run
@@ -31,7 +31,7 @@ docker build -t hdhomerun-epg .
 # Run the container
 docker run -d \
   --name hdhomerun-epg \
-  -p 8080:8080 \
+  -p 8083:8083 \
   -e HDHOMERUN_HOST=192.168.1.100 \
   -e CRON_SCHEDULE="0 3 * * *" \
   -e TZ=America/New_York \
@@ -48,9 +48,9 @@ docker run -d \
 ## Configure Your Media Server
 
 Point your media server to the EPG URL:
-- **Plex**: `http://<unraid-ip>:8080/epg.xml`
-- **Emby**: `http://<unraid-ip>:8080/epg.xml`
-- **Jellyfin**: `http://<unraid-ip>:8080/epg.xml`
+- **Plex**: `http://<unraid-ip>:8083/epg.xml`
+- **Emby**: `http://<unraid-ip>:8083/epg.xml`
+- **Jellyfin**: `http://<unraid-ip>:8083/epg.xml`
 
 No volume mounting required!
 
@@ -74,7 +74,7 @@ No volume mounting required!
 - **cron-entrypoint.sh**: Container initialization and cron setup
 
 ## Important Considerations
-1. **Port 8080**: Must be available on your host system
+1. **Port 8083**: Must be available on your host system (configurable via WEB_PORT)
 2. **HDHomeRun Discovery**: Container needs network access to your HDHomeRun device
 3. **HDHomeRun Compatibility**: Tested with HDHomeRun Flex 4K, compatible with all HDHomeRun models
 4. **Timezone**: Set TZ environment variable to match local timezone for correct scheduling
@@ -84,6 +84,6 @@ No volume mounting required!
 ## Troubleshooting
 
 - **No EPG data**: Check HDHomeRun IP is correct and reachable
-- **Port conflict**: Change WEB_PORT if 8080 is already in use
+- **Port conflict**: Change WEB_PORT if 8083 is already in use
 - **Time issues**: Ensure TZ environment variable matches your timezone
 - **Check logs**: `docker logs hdhomerun-epg`

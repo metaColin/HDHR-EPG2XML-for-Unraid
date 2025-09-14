@@ -122,7 +122,7 @@ class EPGHandler(BaseHTTPRequestHandler):
 </html>""".format(
             host=os.environ.get('HDHOMERUN_HOST', 'not configured'),
             schedule=os.environ.get('CRON_SCHEDULE', '0 3 * * *'),
-            port=os.environ.get('WEB_PORT', '8080')
+            port=os.environ.get('WEB_PORT', '8083')
         )
 
         self.send_response(200)
@@ -240,7 +240,7 @@ class EPGHandler(BaseHTTPRequestHandler):
                     channels.append({
                         'GuideNumber': channel_id,
                         'GuideName': display_name.text,
-                        'URL': f'http://hdhomerun.local:5004/auto/v{channel_id}'
+                        'URL': f'http://{os.environ.get("HDHOMERUN_HOST", "hdhomerun.local")}:5004/auto/v{channel_id}'
                     })
 
             json_response = json.dumps(channels, indent=2)
@@ -397,8 +397,10 @@ class EPGHandler(BaseHTTPRequestHandler):
         """Override to use our logger"""
         logger.info(f"{self.client_address[0]} - {format % args}")
 
-def run_server(port=8080):
+def run_server(port=None):
     """Run the HTTP server"""
+    if port is None:
+        port = int(os.environ.get('WEB_PORT', '8083'))
     server_address = ('', port)
     httpd = HTTPServer(server_address, EPGHandler)
     logger.info(f"EPG HTTP Server starting on port {port}")

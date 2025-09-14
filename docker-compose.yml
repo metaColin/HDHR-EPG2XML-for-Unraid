@@ -6,9 +6,9 @@ services:
     container_name: hdhomerun-epg
     restart: unless-stopped
     ports:
-      - "8080:8080"  # Web server port
+      - "8083:8083"  # Web server port
     environment:
-      - HDHOMERUN_HOST=192.168.1.100  # CHANGE THIS to your HDHomeRun IP
+      - HDHOMERUN_HOST=192.168.134.171  # Your HDHomeRun IP
       - OUTPUT_FILENAME=/output/epg.xml
       - DAYS=7
       - HOURS=3
@@ -16,7 +16,7 @@ services:
       - TZ=America/New_York  # Set your timezone
       - CRON_SCHEDULE=0 3 * * *  # Daily at 3 AM
       - RUN_ON_START=true  # Run immediately on container start
-      - WEB_PORT=8080
+      - WEB_PORT=8083
     volumes:
       - epg-data:/output  # Persistent storage for EPG file
       - epg-logs:/var/log  # Optional: persist logs
