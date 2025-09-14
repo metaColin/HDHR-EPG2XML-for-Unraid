@@ -146,9 +146,19 @@ services:
 - Set the TZ environment variable to match your local timezone
 - Times in EPG should match your local schedule
 
+## Credits
+
+This project builds upon the excellent work of [IncubusVictim's HDHomeRunEPG-to-XmlTv](https://github.com/IncubusVictim/HDHomeRunEPG-to-XmlTv). The core EPG fetching functionality (HDHomeRunEPG_To_XmlTv.py) was created by IncubusVictim and is used under the GPL license.
+
+Our contributions:
+- Dockerization for Unraid deployment
+- HTTP server for direct EPG access
+- Dummy programming feature for channels without EPG data
+- URL parameter support for format and duration options
+- Unraid Community Apps integration
+
 ## Technical Details
 
-- Based on the GPL-licensed HDHomeRunEPG_To_XmlTv.py script
 - Python 3.11 slim Docker container
 - Automatic EPG updates via cron
 - No database required - simple file-based storage
