@@ -13,7 +13,7 @@ services:
       - DAYS=7
       - HOURS=3
       - DEBUG=on
-      - TZ=America/New_York  # Set your timezone
+      - TZ=America/Chicago  # Set your timezone
       - CRON_SCHEDULE=0 3 * * *  # Daily at 3 AM
       - RUN_ON_START=true  # Run immediately on container start
       - WEB_PORT=8083

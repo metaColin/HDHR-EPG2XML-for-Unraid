@@ -27,7 +27,7 @@ ENV DAYS=7
 ENV HOURS=3
 ENV DEBUG=on
 ENV CRON_SCHEDULE="0 3 * * *"
-ENV TZ=America/New_York
+ENV TZ=America/Chicago
 ENV RUN_ON_START=true
 ENV WEB_PORT=8083
 
