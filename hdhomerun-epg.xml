@@ -1,19 +1,19 @@
 <?xml version="1.0"?>
 <Container version="2">
   <Name>HDHomeRun-EPG</Name>
-  <Repository>ghcr.io/your-username/hdhomerun-epg</Repository>
-  <Registry>https://github.com/your-username/HDHR-EPG2XML-for-Unraid</Registry>
+  <Repository>ghcr.io/metacolin/hdhr-epg2xml-for-unraid</Repository>
+  <Registry>https://github.com/metaColin/HDHR-EPG2XML-for-Unraid</Registry>
   <Network>bridge</Network>
   <MyIP/>
   <Shell>sh</Shell>
   <Privileged>false</Privileged>
-  <Support>https://github.com/your-username/HDHR-EPG2XML-for-Unraid/issues</Support>
-  <Project>https://github.com/your-username/HDHR-EPG2XML-for-Unraid</Project>
+  <Support>https://github.com/metaColin/HDHR-EPG2XML-for-Unraid/issues</Support>
+  <Project>https://github.com/metaColin/HDHR-EPG2XML-for-Unraid</Project>
   <Overview>HDHomeRun EPG to XMLTV converter with built-in HTTP server. Automatically fetches Electronic Program Guide data from your HDHomeRun device and serves it via HTTP for use with Plex, Emby, Jellyfin, and other media servers. No volume mounting required - just point your media server to http://[UNRAID-IP]:8080/epg.xml. For channels without EPG data, add dummy programming with URL parameters like ?dummy=1hr or ?dummy=30min</Overview>
   <Category>MediaApp:Video MediaServer:Video Tools:</Category>
   <WebUI>http://[IP]:[PORT:8080]/</WebUI>
-  <TemplateURL>https://raw.githubusercontent.com/your-username/HDHR-EPG2XML-for-Unraid/main/hdhomerun-epg.xml</TemplateURL>
-  <Icon>https://raw.githubusercontent.com/your-username/HDHR-EPG2XML-for-Unraid/main/icon.png</Icon>
+  <TemplateURL>https://raw.githubusercontent.com/metaColin/HDHR-EPG2XML-for-Unraid/main/hdhomerun-epg.xml</TemplateURL>
+  <Icon>https://raw.githubusercontent.com/metaColin/HDHR-EPG2XML-for-Unraid/main/icon.png</Icon>
   <ExtraParams/>
   <PostArgs/>
   <CPUset/>
