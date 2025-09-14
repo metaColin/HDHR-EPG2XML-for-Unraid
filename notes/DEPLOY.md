@@ -9,7 +9,7 @@
 4. Click Install
 5. Configure settings:
    - **HDHomeRun IP**: Enter your device IP (e.g., 192.168.1.100)
-   - **Web Port**: Default 8080 (change if needed)
+   - **Web Port**: Default 8083 (change if needed)
    - **Timezone**: Select your timezone
    - **Update Schedule**: Default 3 AM daily
 6. Click Apply
@@ -26,7 +26,7 @@ docker run -d \
   -e 'HDHOMERUN_HOST'='192.168.1.100' \
   -e 'TZ'='America/New_York' \
   -e 'CRON_SCHEDULE'='0 3 * * *' \
-  -p '8080:8080/tcp' \
+  -p '8083:8083/tcp' \
   ghcr.io/your-username/hdhomerun-epg:latest
 ```
 
@@ -36,20 +36,20 @@ docker run -d \
 1. Settings → Live TV & DVR
 2. Set up HDHomeRun (if not already done)
 3. Electronic Program Guide → XMLTV
-4. Enter: `http://[UNRAID-IP]:8080/epg.xml`
+4. Enter: `http://[UNRAID-IP]:8083/epg.xml`
 5. Optional: Add `?dummy=1hr` for channels without data
 
 #### Jellyfin
 1. Dashboard → Live TV
 2. TV Guide Data Providers → Add
 3. Type: XMLTV
-4. File/URL: `http://[UNRAID-IP]:8080/epg.xml`
+4. File/URL: `http://[UNRAID-IP]:8083/epg.xml`
 5. Refresh interval: 24 hours
 
 #### Emby
 1. Live TV → Guide Data
 2. Add Guide Provider → XMLTV
-3. Path: `http://[UNRAID-IP]:8080/epg.xml`
+3. Path: `http://[UNRAID-IP]:8083/epg.xml`
 4. Save and refresh
 
 ### URL Parameters
@@ -71,14 +71,14 @@ Combine parameters: `?format=plex&dummy=1hr`
 docker logs HDHomeRun-EPG
 
 # Server status
-curl http://[UNRAID-IP]:8080/status
+curl http://[UNRAID-IP]:8083/status
 
 # Health check
-curl http://[UNRAID-IP]:8080/health
+curl http://[UNRAID-IP]:8083/health
 ```
 
 #### Verify EPG Updates
-1. Check last modified time: `http://[UNRAID-IP]:8080/status`
+1. Check last modified time: `http://[UNRAID-IP]:8083/status`
 2. View logs for cron execution
 3. Monitor file size changes
 
@@ -111,7 +111,7 @@ Add to Docker run command:
 ### Troubleshooting Deployment
 
 **Container won't start**
-- Check port 8080 availability
+- Check port 8083 availability
 - Verify HDHomeRun IP is correct
 - Review docker logs
 

@@ -21,7 +21,7 @@
   <DonateText>If you find this useful, consider buying me a coffee!</DonateText>
   <DonateLink/>
   <Requires/>
-  <Config Name="Web Port" Target="8080" Default="8083" Mode="tcp" Description="Port for the HTTP server serving EPG data" Type="Port" Display="always" Required="true" Mask="false">8083</Config>
+  <Config Name="Web Port" Target="8083" Default="8083" Mode="tcp" Description="Port for the HTTP server serving EPG data" Type="Port" Display="always" Required="true" Mask="false">8083</Config>
   <Config Name="HDHomeRun IP" Target="HDHOMERUN_HOST" Default="hdhomerun.local" Mode="" Description="IP address or hostname of your HDHomeRun device" Type="Variable" Display="always" Required="true" Mask="false">hdhomerun.local</Config>
   <Config Name="Update Schedule" Target="CRON_SCHEDULE" Default="0 3 * * *" Mode="" Description="Cron schedule for EPG updates (default: 3 AM daily)" Type="Variable" Display="always" Required="false" Mask="false">0 3 * * *</Config>
   <Config Name="Timezone" Target="TZ" Default="America/New_York" Mode="" Description="Your local timezone for scheduling" Type="Variable" Display="always" Required="false" Mask="false">America/New_York</Config>

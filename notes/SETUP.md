@@ -28,7 +28,7 @@ Create `.env` file for local development:
 HDHOMERUN_HOST=192.168.1.100  # Your HDHomeRun IP
 CRON_SCHEDULE=0 3 * * *       # 3 AM daily
 TZ=America/New_York            # Your timezone
-WEB_PORT=8080                  # HTTP server port
+WEB_PORT=8083                  # HTTP server port
 DEBUG=on                       # Enable debug logging
 RUN_ON_START=true             # Generate EPG on startup
 DAYS=7                        # Days of EPG to fetch
@@ -38,19 +38,19 @@ HOURS=3                       # Hours between updates
 ### Testing Endpoints
 ```bash
 # Check server status
-curl http://localhost:8080/status
+curl http://localhost:8083/status
 
 # Get EPG data
-curl http://localhost:8080/epg.xml
+curl http://localhost:8083/epg.xml
 
 # Get EPG with dummy programming
-curl "http://localhost:8080/epg.xml?dummy=1hr"
+curl "http://localhost:8083/epg.xml?dummy=1hr"
 
 # Get EPG in different format
-curl "http://localhost:8080/epg.xml?format=raw"
+curl "http://localhost:8083/epg.xml?format=raw"
 
 # Combine parameters
-curl "http://localhost:8080/epg.xml?format=plex&dummy=30min"
+curl "http://localhost:8083/epg.xml?format=plex&dummy=30min"
 ```
 
 ### Development Workflow
@@ -73,9 +73,9 @@ docker exec -it hdhomerun-epg /bin/bash
 ```
 
 ### Testing with Media Servers
-1. **Plex**: Settings → Live TV & DVR → Set Up → XMLTV → `http://host.docker.internal:8080/epg.xml`
-2. **Jellyfin**: Live TV → TV Guide Data Providers → Add → XMLTV → `http://localhost:8080/epg.xml`
-3. **Emby**: Live TV → TV Guide Data → Add → XMLTV → `http://localhost:8080/epg.xml`
+1. **Plex**: Settings → Live TV & DVR → Set Up → XMLTV → `http://host.docker.internal:8083/epg.xml`
+2. **Jellyfin**: Live TV → TV Guide Data Providers → Add → XMLTV → `http://localhost:8083/epg.xml`
+3. **Emby**: Live TV → TV Guide Data → Add → XMLTV → `http://localhost:8083/epg.xml`
 
 ### Common Commands
 ```bash
@@ -102,7 +102,7 @@ docker exec hdhomerun-epg ls -lh /output/epg.xml
 ```
 
 ### Troubleshooting
-- **Port 8080 in use**: Change WEB_PORT in .env
+- **Port 8083 in use**: Change WEB_PORT in .env
 - **Can't find HDHomeRun**: Ensure device is on same network, try IP instead of hostname
 - **No EPG data**: Check `docker logs`, verify HDHomeRun has channel lineup
 - **Plex won't accept**: Ensure using actual IP, not localhost
