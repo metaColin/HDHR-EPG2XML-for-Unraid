@@ -9,9 +9,9 @@
   <Privileged>false</Privileged>
   <Support>https://github.com/metaColin/HDHR-EPG2XML-for-Unraid/issues</Support>
   <Project>https://github.com/metaColin/HDHR-EPG2XML-for-Unraid</Project>
-  <Overview>HDHomeRun EPG to XMLTV converter with built-in HTTP server. Automatically fetches Electronic Program Guide data from your HDHomeRun device and serves it via HTTP for use with Plex, Emby, Jellyfin, and other media servers. No volume mounting required - just point your media server to http://[UNRAID-IP]:8080/epg.xml. For channels without EPG data, add dummy programming with URL parameters like ?dummy=1hr or ?dummy=30min</Overview>
+  <Overview>HDHomeRun EPG to XMLTV converter with built-in HTTP server. Automatically fetches Electronic Program Guide data from your HDHomeRun device and serves it via HTTP for use with Plex, Emby, Jellyfin, and other media servers. No volume mounting required - just point your media server to http://[UNRAID-IP]:8083/epg.xml. For channels without EPG data, add dummy programming with URL parameters like ?dummy=1hr or ?dummy=30min</Overview>
   <Category>MediaApp:Video MediaServer:Video Tools:</Category>
-  <WebUI>http://[IP]:[PORT:8080]/</WebUI>
+  <WebUI>http://[IP]:[PORT:8083]/</WebUI>
   <TemplateURL>https://raw.githubusercontent.com/metaColin/HDHR-EPG2XML-for-Unraid/main/hdhomerun-epg.xml</TemplateURL>
   <Icon>https://raw.githubusercontent.com/metaColin/HDHR-EPG2XML-for-Unraid/main/icon.png</Icon>
   <ExtraParams/>
@@ -21,7 +21,7 @@
   <DonateText>If you find this useful, consider buying me a coffee!</DonateText>
   <DonateLink/>
   <Requires/>
-  <Config Name="Web Port" Target="8080" Default="8080" Mode="tcp" Description="Port for the HTTP server serving EPG data" Type="Port" Display="always" Required="true" Mask="false">8080</Config>
+  <Config Name="Web Port" Target="8080" Default="8083" Mode="tcp" Description="Port for the HTTP server serving EPG data" Type="Port" Display="always" Required="true" Mask="false">8083</Config>
   <Config Name="HDHomeRun IP" Target="HDHOMERUN_HOST" Default="hdhomerun.local" Mode="" Description="IP address or hostname of your HDHomeRun device" Type="Variable" Display="always" Required="true" Mask="false">hdhomerun.local</Config>
   <Config Name="Update Schedule" Target="CRON_SCHEDULE" Default="0 3 * * *" Mode="" Description="Cron schedule for EPG updates (default: 3 AM daily)" Type="Variable" Display="always" Required="false" Mask="false">0 3 * * *</Config>
   <Config Name="Timezone" Target="TZ" Default="America/New_York" Mode="" Description="Your local timezone for scheduling" Type="Variable" Display="always" Required="false" Mask="false">America/New_York</Config>
