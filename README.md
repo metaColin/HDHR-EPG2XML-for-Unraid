@@ -150,7 +150,7 @@ services:
 
 This project builds upon the excellent work of [IncubusVictim's HDHomeRunEPG-to-XmlTv](https://github.com/IncubusVictim/HDHomeRunEPG-to-XmlTv). The core EPG fetching functionality (HDHomeRunEPG_To_XmlTv.py) was created by IncubusVictim and is used under the GPL license.
 
-Our contributions:
+Enhancements in this version:
 - Dockerization for Unraid deployment
 - HTTP server for direct EPG access
 - Dummy programming feature for channels without EPG data
