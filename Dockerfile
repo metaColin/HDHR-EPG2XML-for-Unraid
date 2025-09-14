@@ -7,6 +7,7 @@ WORKDIR /app
 RUN apt-get update && apt-get install -y \
     cron \
     supervisor \
+    iproute2 \
     && rm -rf /var/lib/apt/lists/*
 
 # Install required Python packages

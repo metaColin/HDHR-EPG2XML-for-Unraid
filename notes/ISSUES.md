@@ -57,22 +57,62 @@
 **Mitigation**: TZ environment variable configuration
 **Impact**: Medium - requires user configuration
 
-## Technical Debt
+## Technical Debt (Critical for v2.0 Rewrite)
 
-### 1. No Persistent Cache
-**Description**: EPG regenerates fully each update
-**Proposed Fix**: Implement differential updates
-**Priority**: Low - current approach works well
+### 1. No Health Checks
+**Description**: Container could be dead and Unraid wouldn't know
+**Proposed Fix**: Add HEALTHCHECK directive to Dockerfile
+**Priority**: HIGH - Critical for production
 
-### 2. Single-threaded Server
-**Description**: HTTP server handles one request at a time
-**Proposed Fix**: Use asyncio or threading
-**Priority**: Low - EPG requests are infrequent
+### 2. No EPG Validation
+**Description**: Could generate broken XML and serve it without checking
+**Proposed Fix**: Validate XML after generation, keep last good copy
+**Priority**: HIGH - Data integrity issue
 
-### 3. No Metrics/Monitoring
-**Description**: No built-in performance metrics
-**Proposed Fix**: Add Prometheus endpoint
-**Priority**: Low - can use container metrics
+### 3. No Retry Logic
+**Description**: HDHomeRun temporary failures cause permanent failure
+**Proposed Fix**: Exponential backoff retry with configurable attempts
+**Priority**: HIGH - Reliability issue
+
+### 4. No Log Rotation
+**Description**: Logs in /var/log will fill disk eventually
+**Proposed Fix**: Add logrotate or use stdout/stderr properly
+**Priority**: MEDIUM - Operational issue
+
+### 5. No Error Notifications
+**Description**: Silent failures at 3 AM, no one knows
+**Proposed Fix**: Webhook support or email notifications
+**Priority**: MEDIUM - Observability issue
+
+### 6. Barebones Status Page
+**Description**: No useful metrics (last update, channel count, file size)
+**Proposed Fix**: Rich status dashboard with history
+**Priority**: MEDIUM - User experience
+
+### 7. No Graceful Shutdown
+**Description**: Supervisor just kills everything
+**Proposed Fix**: Proper signal handling, finish current operations
+**Priority**: LOW - Minor issue
+
+### 8. Hardcoded Python Path
+**Description**: Brittle `/usr/local/bin/python3` assumption
+**Proposed Fix**: Use `which python3` or env vars
+**Priority**: LOW - Works for now
+
+### 9. No Startup Validation
+**Description**: Doesn't verify HDHomeRun is accessible before starting
+**Proposed Fix**: Pre-flight checks with clear error messages
+**Priority**: MEDIUM - User experience
+
+### 10. Bloated Container
+**Description**: Installing full iproute2 just for IP detection
+**Proposed Fix**: Use lighter alternative or Python socket module
+**Priority**: LOW - 85MB isn't terrible
+
+### 11. Version Numbering Hubris
+**Description**: Calling broken code v1.0+ before it actually works
+**Proposed Fix**: Use 0.x.x until genuinely production-ready
+**Priority**: HIGH - Truth in advertising
 
 ## Future Improvements
 

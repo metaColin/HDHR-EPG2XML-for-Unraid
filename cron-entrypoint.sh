@@ -52,8 +52,12 @@ echo "Initial EPG update completed."
 EOF
 chmod +x /app/run-once.sh
 
-# Create log file
+# Create log directories and files
+mkdir -p /var/log/supervisor
 touch /var/log/cron.log
+
+# Get the host IP address (container's gateway is usually the host)
+HOST_IP=$(ip route | grep default | awk '{print $3}')
 
 # Display configuration
 echo "==========================================="
@@ -65,6 +69,14 @@ echo "Days: $DAYS"
 echo "Schedule: $CRON_SCHEDULE"
 echo "Timezone: $TZ"
 echo "Run on start: $RUN_ON_START"
+echo "==========================================="
+echo ""
+echo "EPG ENDPOINTS AVAILABLE:"
+echo "  http://${HOST_IP}:${WEB_PORT:-8083}/epg.xml"
+echo "  http://${HOST_IP}:${WEB_PORT:-8083}/epg.xml?dummy=1hr"
+echo "  http://${HOST_IP}:${WEB_PORT:-8083}/epg.xml?dummy=30min"
+echo ""
+echo "Status page: http://${HOST_IP}:${WEB_PORT:-8083}/"
 echo "==========================================="
 
 # Start supervisor
