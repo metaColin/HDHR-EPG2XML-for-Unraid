@@ -406,5 +406,5 @@ def run_server(port=8080):
     httpd.serve_forever()
 
 if __name__ == '__main__':
-    port = int(os.environ.get('WEB_PORT', '8080'))
+    port = int(os.environ.get('WEB_PORT', '8083'))
     run_server(port)

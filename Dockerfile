@@ -28,7 +28,7 @@ ENV DEBUG=on
 ENV CRON_SCHEDULE="0 3 * * *"
 ENV TZ=America/New_York
 ENV RUN_ON_START=true
-ENV WEB_PORT=8080
+ENV WEB_PORT=8083
 
 # Copy configuration files
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
@@ -36,6 +36,6 @@ COPY cron-entrypoint.sh /app/
 RUN chmod +x /app/cron-entrypoint.sh
 
 # Expose web server port
-EXPOSE 8080
+EXPOSE 8083
 
 ENTRYPOINT ["/app/cron-entrypoint.sh"]

@@ -63,7 +63,7 @@ No volume mounting required!
 - `TZ`: Timezone (e.g., America/New_York)
 - `CRON_SCHEDULE`: Cron schedule for updates (default: "0 3 * * *" - 3 AM daily)
 - `RUN_ON_START`: Run EPG update on container start (default: true)
-- `WEB_PORT`: HTTP server port (default: 8080)
+- `WEB_PORT`: HTTP server port (default: 8083)
 
 ## File Structure
 - **Dockerfile**: Container definition with cron and web server
