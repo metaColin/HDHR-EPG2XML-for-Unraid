@@ -29,6 +29,7 @@
   <Config Name="Hours per Update" Target="HOURS" Default="3" Mode="" Description="Hours between updates" Type="Variable" Display="advanced" Required="false" Mask="false">3</Config>
   <Config Name="Debug Mode" Target="DEBUG" Default="on" Mode="" Description="Enable debug logging (on/off)" Type="Variable" Display="advanced" Required="false" Mask="false">on</Config>
   <Config Name="Run on Start" Target="RUN_ON_START" Default="true" Mode="" Description="Run EPG update when container starts" Type="Variable" Display="advanced" Required="false" Mask="false">true</Config>
+  <Config Name="Server IP (Optional)" Target="SERVER_IP" Default="" Mode="" Description="Your Unraid server IP for display in logs (e.g. 192.168.1.100). Leave empty for auto-detect." Type="Variable" Display="advanced" Required="false" Mask="false"></Config>
   <Config Name="EPG Data" Target="/output" Default="/mnt/user/appdata/hdhomerun-epg/data" Mode="rw" Description="Storage for EPG file" Type="Path" Display="advanced" Required="false" Mask="false">/mnt/user/appdata/hdhomerun-epg/data</Config>
   <Config Name="Logs" Target="/var/log" Default="/mnt/user/appdata/hdhomerun-epg/logs" Mode="rw" Description="Storage for log files" Type="Path" Display="advanced" Required="false" Mask="false">/mnt/user/appdata/hdhomerun-epg/logs</Config>
 </Container>

@@ -56,8 +56,19 @@ chmod +x /app/run-once.sh
 mkdir -p /var/log/supervisor
 touch /var/log/cron.log
 
-# Get the host IP address (container's gateway is usually the host)
-HOST_IP=$(ip route | grep default | awk '{print $3}')
+# Get the host IP for displaying URLs
+# Allow user to explicitly set it via SERVER_IP env var
+if [ ! -z "$SERVER_IP" ]; then
+    HOST_IP=$SERVER_IP
+else
+    # Try to detect it (this will likely get Docker bridge IP)
+    HOST_IP=$(ip route | grep default | awk '{print $3}')
+
+    # If we got a Docker internal IP, show placeholder instead
+    if [[ "$HOST_IP" == "172.17."* ]] || [[ "$HOST_IP" == "172.18."* ]] || [[ "$HOST_IP" == "172."* ]]; then
+        HOST_IP="YOUR-UNRAID-IP"
+    fi
+fi
 
 # Display configuration
 echo "==========================================="
