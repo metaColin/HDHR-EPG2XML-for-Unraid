@@ -10,6 +10,10 @@
 ### 2. Plex "Error communicating with provider"
 **Problem**: Plex couldn't connect to EPG endpoint using localhost
 **Solution**: Use actual server IP instead of localhost/127.0.0.1
+**CRITICAL**: NEVER use localhost in URLs for Plex - it cannot reach the container's localhost from its context
+**Testing URLs**:
+- ❌ WRONG: `http://localhost:8083/epg.xml`
+- ✅ CORRECT: `http://192.168.134.164:8083/epg.xml`
 **Status**: ✅ Resolved
 
 ### 3. Plex "Invalid or missing file"
