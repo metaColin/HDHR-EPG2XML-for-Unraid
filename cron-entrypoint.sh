@@ -61,11 +61,34 @@ touch /var/log/cron.log
 if [ ! -z "$SERVER_IP" ]; then
     HOST_IP=$SERVER_IP
 else
-    # Try to detect it (this will likely get Docker bridge IP)
-    HOST_IP=$(ip route | grep default | awk '{print $3}')
+    # Try multiple methods to get the real host IP
 
-    # If we got a Docker internal IP, show placeholder instead
-    if [[ "$HOST_IP" == "172.17."* ]] || [[ "$HOST_IP" == "172.18."* ]] || [[ "$HOST_IP" == "172."* ]]; then
+    # Method 1: Try to resolve the Unraid hostname (HOST_HOSTNAME is set by Unraid)
+    if [ ! -z "$HOST_HOSTNAME" ]; then
+        # Try to resolve the hostname on the local network
+        HOST_IP=$(ping -c 1 -W 1 "${HOST_HOSTNAME}.local" 2>/dev/null | grep -oP '\(\K[0-9.]+(?=\))' | head -1)
+
+        # If .local didn't work, try without
+        if [ -z "$HOST_IP" ]; then
+            HOST_IP=$(ping -c 1 -W 1 "$HOST_HOSTNAME" 2>/dev/null | grep -oP '\(\K[0-9.]+(?=\))' | head -1)
+        fi
+    fi
+
+    # Method 2: Get the IP that would route to external internet
+    if [ -z "$HOST_IP" ] || [[ "$HOST_IP" == "172."* ]]; then
+        HOST_IP=$(ip route get 8.8.8.8 2>/dev/null | grep -oP 'src \K[^ ]+' | head -1)
+    fi
+
+    # Method 3: Parse the docker network gateway and guess the host is on same subnet
+    if [[ "$HOST_IP" == "172."* ]]; then
+        # Get the gateway IP
+        GATEWAY=$(ip route | grep default | awk '{print $3}')
+        # Try common Unraid IPs by replacing docker subnet with common home subnets
+        HOST_IP=$(echo $GATEWAY | sed 's/172\.17\.[0-9]*\.[0-9]*/192.168.1.1/')
+    fi
+
+    # If still no luck, show placeholder
+    if [ -z "$HOST_IP" ] || [[ "$HOST_IP" == "172."* ]]; then
         HOST_IP="YOUR-UNRAID-IP"
     fi
 fi

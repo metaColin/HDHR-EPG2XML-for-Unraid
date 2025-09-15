@@ -8,6 +8,7 @@ RUN apt-get update && apt-get install -y \
     cron \
     supervisor \
     iproute2 \
+    iputils-ping \
     && rm -rf /var/lib/apt/lists/*
 
 # Install required Python packages
