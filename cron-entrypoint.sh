@@ -95,7 +95,7 @@ fi
 
 # Display configuration
 echo "==========================================="
-echo "HDHomeRun EPG to XML Converter"
+echo "HDHomeRun EPG to XML Converter v1.0.9"
 echo "==========================================="
 echo "Host: $HDHOMERUN_HOST"
 echo "Output: $OUTPUT_FILENAME"
