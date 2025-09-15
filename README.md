@@ -78,7 +78,7 @@ Parameters can be combined:
 
 | Variable | Default | Description |
 |----------|---------|-------------|
-| `HDHOMERUN_HOST` | `hdhomerun.local` | Your HDHomeRun IP or hostname |
+| `HDHOMERUN_HOST` | `hdhomerun.local` | Your HDHomeRun IP (recommended) or hostname |
 | `WEB_PORT` | `8083` | HTTP server port |
 | `CRON_SCHEDULE` | `0 3 * * *` | Update schedule (cron format) |
 | `TZ` | `America/New_York` | Your timezone |
@@ -129,6 +129,7 @@ services:
 ## Troubleshooting
 
 ### No EPG Data
+- **Use IP address instead of hostname** - Docker may not resolve "hdhomerun.local"
 - Verify HDHomeRun IP is correct and accessible
 - Check container logs: `docker logs hdhomerun-epg`
 - Test HDHomeRun directly: `http://YOUR-HDHOMERUN-IP/lineup.json`

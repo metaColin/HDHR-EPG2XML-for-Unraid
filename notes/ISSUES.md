@@ -40,6 +40,11 @@
 **Solution**: Added URL parameter support for dummy programming (?dummy=1hr)
 **Status**: ✅ Resolved
 
+### 7. HDHomeRun Hostname Resolution
+**Problem**: Docker containers can't resolve "hdhomerun.local" mDNS
+**Solution**: Use HDHomeRun IP address instead of hostname
+**Status**: ✅ Resolved - documented to use IP
+
 ## Known Limitations
 
 ### 1. HDHomeRun API Rate Limits

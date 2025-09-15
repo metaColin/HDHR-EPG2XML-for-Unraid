@@ -22,7 +22,7 @@
   <DonateLink/>
   <Requires/>
   <Config Name="Web Port" Target="8083" Default="8083" Mode="tcp" Description="Port for the HTTP server serving EPG data" Type="Port" Display="always" Required="true" Mask="false">8083</Config>
-  <Config Name="HDHomeRun IP" Target="HDHOMERUN_HOST" Default="hdhomerun.local" Mode="" Description="IP address or hostname of your HDHomeRun device" Type="Variable" Display="always" Required="true" Mask="false">hdhomerun.local</Config>
+  <Config Name="HDHomeRun IP" Target="HDHOMERUN_HOST" Default="hdhomerun.local" Mode="" Description="IP address of your HDHomeRun device (IP recommended over hostname for Docker compatibility)" Type="Variable" Display="always" Required="true" Mask="false">hdhomerun.local</Config>
   <Config Name="Update Schedule" Target="CRON_SCHEDULE" Default="0 3 * * *" Mode="" Description="Cron schedule for EPG updates (default: 3 AM daily)" Type="Variable" Display="always" Required="false" Mask="false">0 3 * * *</Config>
   <Config Name="Timezone" Target="TZ" Default="America/Chicago" Mode="" Description="Your local timezone for scheduling" Type="Variable" Display="always" Required="false" Mask="false">America/Chicago</Config>
   <Config Name="Days to Fetch" Target="DAYS" Default="7" Mode="" Description="Number of days of EPG data to fetch (max 7)" Type="Variable" Display="advanced" Required="false" Mask="false">7</Config>
